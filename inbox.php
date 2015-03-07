@@ -49,7 +49,7 @@ endif;
 
 //************************************  check allowed email list and get timezone and email format if it checks out
 $db = new dbWrapper(DBHOST, DBUSER, DBPASS, DBNAME, true);
-$result = $db->q("SELECT * FROM allowedEmails WHERE allowedEmail = ?", 's', $fromemail);
+$result = $db->q("SELECT * FROM ".DBPREFIX."allowedEmails WHERE allowedEmail = ?", 's', $fromemail);
 if (is_array($result) and count($result) > 0) {
 foreach($result as $email) :
 date_default_timezone_set($email['timeZone']);
@@ -115,5 +115,5 @@ endif;
 		$resendtime = $adjustdaymonth.'/'.$nextyear.' '.$adjusttime;
 	endif;
 $timestamp = strtotime($resendtime);
-$result = $db->q("INSERT INTO bumpQueue (fromEmail, subject, body, timeToSend) VALUES(?, ?, ?, ?)", 'ssss', $fromemail, $subject, $$emailformat, $timestamp );
+$result = $db->q("INSERT INTO ".DBPREFIX."bumpQueue (fromEmail, subject, body, timeToSend) VALUES(?, ?, ?, ?)", 'ssss', $fromemail, $subject, $$emailformat, $timestamp );
 }

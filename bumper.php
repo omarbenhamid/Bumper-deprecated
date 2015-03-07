@@ -12,7 +12,7 @@ $db = new dbWrapper(DBHOST, DBUSER, DBPASS, DBNAME, true);
 
 $now=time();
 
-$r = $db->q("SELECT * FROM bumpQueue WHERE timeToSend < ?", 'i', $now);
+$r = $db->q("SELECT * FROM ".DBPREFIX."bumpQueue WHERE timeToSend < ?", 'i', $now);
 
 //************************************  Set the email headers
 
@@ -30,5 +30,5 @@ mail($email['fromEmail'], $email['subject'], $email['body'], $headers);
 
 endforeach;
 
-$r = $db->q("DELETE FROM bumpQueue WHERE timeToSend < ?", 'i', $now);
+$r = $db->q("DELETE FROM ".DBPREFIX."bumpQueue WHERE timeToSend < ?", 'i', $now);
 

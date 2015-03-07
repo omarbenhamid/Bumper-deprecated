@@ -182,7 +182,7 @@ require_once('includes/class_TimezoneSelector.php');
 				<p style="margin-left:50px;width:80%;">These are the email addresses that can schedule reminders with your installation of Bumper.</p>
 					<ul id="allowedEmailList" style="width:350px;list-style:none;">
 						<?php $db = new dbWrapper(DBHOST, DBUSER, DBPASS, DBNAME, true);
-						$result = $db->q("SELECT * FROM allowedEmails");
+						$result = $db->q("SELECT * FROM ".DBPREFIX."allowedEmails");
 						foreach($result as $key=>$email) : ?>
 						<li class="schmancy">
 						<a class="removeEmail" style="cursor:pointer;" id="<?php echo $email['allowedEmail']; ?>" title="Remove this email">
@@ -262,7 +262,7 @@ require_once('includes/class_TimezoneSelector.php');
 				<p style="margin-left:50px;width:80%;">These are the reminders currently scheduled in your Bumper. Times are shown in timezone:<?php $tz = date_default_timezone_get(); echo $tz; ?></p>
 					<ul id="queuedBumpList" style="width:500px;list-style:none;">
 						<?php $db = new dbWrapper(DBHOST, DBUSER, DBPASS, DBNAME, true);
-						$result = $db->q("SELECT * FROM bumpQueue ORDER BY timeToSend");
+						$result = $db->q("SELECT * FROM ".DBPREFIX."bumpQueue ORDER BY timeToSend");
 						foreach($result as $key=>$r) : ?>
 						<li class="schmancy">
 						<a class="removeReminder" style="cursor:pointer;" id="bump-<?php echo $r['bumpId']; ?>" title="Remove this reminder">

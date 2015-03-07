@@ -38,7 +38,8 @@
 						dbname : $('#dbname').val(),
 						dbuser : $('#dbuser').val(),
 						dbpassword : $('#dbpassword').val(),
-						dbhost : $('#dbhost').val()
+						dbhost : $('#dbhost').val(),
+						dbprefix: $('#dbprefix').val()
 						};
 				$.post('includes/dbconfig.php', data, function(response) {
 					if (response != 'Success!') {
@@ -85,6 +86,7 @@
 						dbuser : $('#dbuser').val(),
 						dbpassword : $('#dbpassword').val(),
 						dbhost : $('#dbhost').val(),
+						dbprefix: $('#dbprefix').val(),
 						adminemail : $('#adminemail').val(),
 						adminpassword : $('#adminpassword').val(),
 						}
@@ -180,6 +182,12 @@
                     Database Host
                </label>
                <input type="text" id="dbhost" required="required" value="localhost">
+          </div> 
+          <div id="field-dbp-container" class="field f_100">
+               <label for="field5">
+                    Table Prefix
+               </label>
+               <input type="text" id="dbprefix" value="BMR_">
           </div> 
           
           <div id="form-submit" class="field f_100 clearfix submit">

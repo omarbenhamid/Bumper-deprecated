@@ -4,6 +4,8 @@ error_reporting(0);
 require_once('bumper.config');
 //start session
 session_start();
+define("USERTBL",DBPREFIX.'logon');
+
 class logmein {
     //database setup
        //MAKE SURE TO FILL IN DATABASE INFO
@@ -13,7 +15,7 @@ class logmein {
     var $password_logon = DBPASS;       //Database PASSWORD
  
     //table fields
-    var $user_table = 'logon';          //Users table name
+    var $user_table = USERTBL;          //Users table name
     var $user_column = 'userEmail';     //USERNAME column (value MUST be valid email)
     var $pass_column = 'password';      //PASSWORD column
     var $user_level = 'userLevel';      //(optional) userlevel column
